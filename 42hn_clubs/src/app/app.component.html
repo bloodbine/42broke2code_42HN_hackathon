@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tile Layout with Glass Background</title>
+    <title>Tile Layout with Glass Over Texture</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
         @property --angle-1 {
@@ -26,13 +26,30 @@
         }
 
         body {
-        background: url("assets/hb.jpg") no-repeat center center fixed;
-        background-size: cover; /* Ensures the image covers the entire page */
-    }
+          background: url("assets/hb.jpg") no-repeat center center fixed;
+          background-size: cover;
+        }
+
         .tile-3d {
             border-radius: 35px 35px 50px 50px / 35px 35px 60px 60px;
             position: relative;
             transition: all var(--anim--hover-time) var(--anim--hover-ease);
+            overflow: hidden;
+            
+            /* Background texture layer */
+            background: url("assets/glass_background.jpg") center/cover;
+            opacity: 0.9;
+        }
+        
+        /* Glass effect overlay */
+        .tile-3d::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            border-radius: inherit;
             
             /* Glass Background Styles */
             background: linear-gradient(
@@ -50,10 +67,10 @@
             -webkit-backdrop-filter: blur(clamp(1px, 0.125em, 4px));
             -moz-backdrop-filter: blur(clamp(1px, 0.125em, 4px));
             -ms-backdrop-filter: blur(clamp(1px, 0.125em, 4px));
+            z-index: 1;
         }
         
-        .tile-3d:hover {
-            transform: translateY(-3px) scale(0.975);
+        .tile-3d:hover::before {
             backdrop-filter: blur(0.01em);
             -webkit-backdrop-filter: blur(0.01em);
             -moz-backdrop-filter: blur(0.01em);
@@ -63,6 +80,10 @@
                 inset 0 -0.125em 0.125em rgba(255, 255, 255, 0.5),
                 0 0.15em 0.05em -0.1em rgba(0, 0, 0, 0.25),
                 0 0 0.05em 0.1em inset rgba(255, 255, 255, 0.5);
+        }
+        
+        .tile-3d:hover {
+            transform: translateY(-3px) scale(0.975);
         }
         
         .large-tile-3d {
@@ -70,6 +91,22 @@
             position: relative;
             min-height: 450px;
             transition: all var(--anim--hover-time) var(--anim--hover-ease);
+            overflow: hidden;
+            
+            /* Background texture layer */
+            background: url("assets/glass_background.jpg") center/cover;
+            opacity: 0.9;
+        }
+        
+        /* Glass effect overlay */
+        .large-tile-3d::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            border-radius: inherit;
             
             /* Glass Background Styles */
             background: linear-gradient(
@@ -87,10 +124,10 @@
             -webkit-backdrop-filter: blur(clamp(1px, 0.125em, 4px));
             -moz-backdrop-filter: blur(clamp(1px, 0.125em, 4px));
             -ms-backdrop-filter: blur(clamp(1px, 0.125em, 4px));
+            z-index: 1;
         }
         
-        .large-tile-3d:hover {
-            transform: translateY(-3px) scale(0.975);
+        .large-tile-3d:hover::before {
             backdrop-filter: blur(0.01em);
             -webkit-backdrop-filter: blur(0.01em);
             -moz-backdrop-filter: blur(0.01em);
@@ -100,6 +137,16 @@
                 inset 0 -0.125em 0.125em rgba(255, 255, 255, 0.5),
                 0 0.15em 0.05em -0.1em rgba(0, 0, 0, 0.25),
                 0 0 0.05em 0.1em inset rgba(255, 255, 255, 0.5);
+        }
+        
+        .large-tile-3d:hover {
+            transform: translateY(-3px) scale(0.975);
+        }
+        
+        /* Ensure content stays above the glass layer */
+        .tile-3d > *, .large-tile-3d > * {
+            position: relative;
+            z-index: 2;
         }
         
         .calendar-day {
@@ -150,13 +197,13 @@
         }
     </style>
 </head>
-<body class="bg-gradient-to-br from-blue-50 to-purple-50 min-h-screen p-4">
+<body class="min-h-screen p-4">
     <div class="max-w-6xl mx-auto">
         <!-- Profile Section -->
         <div class="flex justify-between items-center mb-8">
-            <h1 class="text-3xl font-bold text-gray-800">Tile Layout with Glass Background</h1>
+            <h1 class="text-3xl font-bold text-white">Tile Layout with Glass Over Texture</h1>
             <div class="flex items-center space-x-3">
-                <span class="text-gray-700 font-medium">John Doe</span>
+                <span class="text-white font-medium">John Doe</span>
                 <div class="w-12 h-12 bg-gradient-to-r from-blue-400 to-purple-500 rounded-full flex items-center justify-center text-white font-bold shadow-md">
                     JD
                 </div>
@@ -170,24 +217,24 @@
                 <div class="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mb-4">
                     <span class="text-blue-600 text-2xl">1</span>
                 </div>
-                <h3 class="text-xl font-semibold text-gray-700 mb-2">Tile 1</h3>
-                <p class="text-gray-500 text-center">First tile content</p>
+                <h3 class="text-xl font-semibold text-white mb-2">Tile 1</h3>
+                <p class="text-gray-200 text-center">First tile content</p>
             </div>
             
             <div class="tile-3d p-6 flex flex-col items-center justify-center">
                 <div class="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mb-4">
                     <span class="text-green-600 text-2xl">2</span>
                 </div>
-                <h3 class="text-xl font-semibold text-gray-700 mb-2">Tile 2</h3>
-                <p class="text-gray-500 text-center">Second tile content</p>
+                <h3 class="text-xl font-semibold text-white mb-2">Tile 2</h3>
+                <p class="text-gray-200 text-center">Second tile content</p>
             </div>
             
             <div class="tile-3d p-6 flex flex-col items-center justify-center">
                 <div class="w-16 h-16 bg-purple-100 rounded-full flex items-center justify-center mb-4">
                     <span class="text-purple-600 text-2xl">3</span>
                 </div>
-                <h3 class="text-xl font-semibold text-gray-700 mb-2">Tile 3</h3>
-                <p class="text-gray-500 text-center">Third tile content</p>
+                <h3 class="text-xl font-semibold text-white mb-2">Tile 3</h3>
+                <p class="text-gray-200 text-center">Third tile content</p>
             </div>
             
             <!-- Second row of tiles -->
@@ -195,24 +242,24 @@
                 <div class="w-16 h-16 bg-red-100 rounded-full flex items-center justify-center mb-4">
                     <span class="text-red-600 text-2xl">4</span>
                 </div>
-                <h3 class="text-xl font-semibold text-gray-700 mb-2">Tile 4</h3>
-                <p class="text-gray-500 text-center">Fourth tile content</p>
+                <h3 class="text-xl font-semibold text-white mb-2">Tile 4</h3>
+                <p class="text-gray-200 text-center">Fourth tile content</p>
             </div>
             
             <div class="tile-3d p-6 flex flex-col items-center justify-center">
                 <div class="w-16 h-16 bg-yellow-100 rounded-full flex items-center justify-center mb-4">
                     <span class="text-yellow-600 text-2xl">5</span>
                 </div>
-                <h3 class="text-xl font-semibold text-gray-700 mb-2">Tile 5</h3>
-                <p class="text-gray-500 text-center">Fifth tile content</p>
+                <h3 class="text-xl font-semibold text-white mb-2">Tile 5</h3>
+                <p class="text-gray-200 text-center">Fifth tile content</p>
             </div>
             
             <div class="tile-3d p-6 flex flex-col items-center justify-center">
                 <div class="w-16 h-16 bg-indigo-100 rounded-full flex items-center justify-center mb-4">
                     <span class="text-indigo-600 text-2xl">6</span>
                 </div>
-                <h3 class="text-xl font-semibold text-gray-700 mb-2">Tile 6</h3>
-                <p class="text-gray-500 text-center">Sixth tile content</p>
+                <h3 class="text-xl font-semibold text-white mb-2">Tile 6</h3>
+                <p class="text-gray-200 text-center">Sixth tile content</p>
             </div>
             
             <!-- Large tile as calendar -->
