@@ -1,89 +1,38 @@
-<head>
-    <!-- <title>42HN Clubs | Login</title> -->
-    <!-- <script src="https://cdn.tailwindcss.com"></script> -->
-    <style>
-        @property --angle-1 {
-          syntax: "<angle>";
-          inherits: false;
-          initial-value: -75deg;
-        }
-
-        @property --angle-2 {
-          syntax: "<angle>";
-          inherits: false;
-          initial-value: -45deg;
-        }
-
-        :root {
-          --global--size: clamp(2rem, 4vw, 5rem);
-          --anim--hover-time: 400ms;
-          --anim--hover-ease: cubic-bezier(0.25, 1, 0.5, 1);
-          --border-width: clamp(1px, 0.0625em, 4px);
-        }
-
-        body {
-            background: linear-gradient(135deg, #0a2463 0%, #1e3c8b 50%, #2a4ba0 100%);
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        }
-
-        .login-container {
-            background: rgba(255, 255, 255, 0.05); */
-            /* backdrop-filter: blur(10px); */
-            /* border: 1px solid rgba(255, 255, 255, 0.1); */
-            /* box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
-            /* pointer-events: auto !important; */
-        }
-
-        .intra-btn {
-            background: linear-gradient(135deg, #00babc 0%, #008c8e 100%);
-            transition: all 0.3s ease;
-            pointer-events: auto !important;
-            cursor: pointer !important;
-        }
-
-        .intra-btn:hover {
-            background: linear-gradient(135deg, #00ccce 0%, #009c9e 100%);
-            transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-        }
-
-        .pulse {
-            animation: pulse 2s infinite;
-        }
-
-        @keyframes pulse {
-            0% {
-                box-shadow: 0 0 0 0 rgba(0, 188, 190, 0.4);
-            }
-            70% {
-                box-shadow: 0 0 0 10px rgba(0, 188, 190, 0);
-            }
-            100% {
-                box-shadow: 0 0 0 0 rgba(0, 188, 190, 0);
-            }
-        }
-    </style>
-</head>
-<body class="min-h-screen flex items-center justify-center p-4">
-    <div class="login-container rounded-2xl p-8 w-full max-w-md text-white z-10">
-        <!-- Logo and Profile -->
-        <div class="text-center mb-8">
-            <!-- Profile Picture -->
-            <div class="flex justify-center mb-6">
-                <div class="w-24 h-24 rounded-full bg-gray-700 overflow-hidden border-4 border-white/20">
-                    <img src="assets/gpasztor.jpg" alt="Profile" class="w-full h-full object-cover">
-                </div>
-            </div>
-            <h1 class="text-2xl font-bold">Log in to 42HN Clubs</h1>
-            <p class="text-blue-200 mt-2">Connect with your Intra account</p>
+<div class="min-h-screen flex items-center justify-center p-4 bg-gradient-to-br from-blue-900 to-purple-900">
+    <!-- Main Login Container -->
+    <div class="bg-white/10 backdrop-blur-md border border-white/20 rounded-2xl p-8 w-full max-w-md text-white shadow-2xl">
+      
+      <!-- Profile Section -->
+      <div class="text-center mb-8">
+        <div class="flex justify-center mb-6">
+          <div class="w-24 h-24 rounded-full bg-gray-600 overflow-hidden border-4 border-white/20 shadow-lg">
+            <img 
+              src="assets/gpasztor.jpg" 
+              alt="Profile" 
+              class="w-full h-full object-cover"
+              onerror="this.style.display='none'">
+          </div>
         </div>
-
-        <!-- Intra Login Button -->
-        <button
-            class="intra-btn w-full py-4 rounded-lg font-medium text-white focus:outline-none flex items-center justify-center cursor-pointer z-50"
-            style="pointer-events: auto !important;" (click)="navigateToDashboard()">
-            <i class="fas fa-sign-in-alt mr-3"></i>
-            Log in with Intra
-        </button>
+        
+        <h1 class="text-2xl font-bold mb-2">Log in to 42HN Clubs</h1>
+        <p class="text-blue-200 text-sm">Connect with your Intra account</p>
+      </div>
+  
+      <!-- Login Button -->
+      <button
+        (click)="navigateToDashboard()"
+        class="w-full py-4 px-6 bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-600 hover:to-blue-700 text-white font-semibold rounded-lg transition-all duration-300 transform hover:scale-105 hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-cyan-400 focus:ring-opacity-50 flex items-center justify-center cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
+        type="button">
+        <i class="fas fa-sign-in-alt mr-3"></i>
+        Log in with Intra
+      </button>
+  
     </div>
-</body>
+  
+    <!-- Decorative background elements that don't interfere with clicks -->
+    <div class="fixed inset-0 -z-10 overflow-hidden pointer-events-none">
+      <div class="absolute top-10 left-10 w-20 h-20 rounded-full bg-blue-500 opacity-10 blur-xl"></div>
+      <div class="absolute bottom-10 right-10 w-32 h-32 rounded-full bg-indigo-500 opacity-10 blur-xl"></div>
+      <div class="absolute top-1/2 right-1/4 w-16 h-16 rounded-full bg-cyan-400 opacity-10 blur-xl"></div>
+    </div>
+  </div>
