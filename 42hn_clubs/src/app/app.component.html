@@ -3,86 +3,99 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tile Layout with Profile & Calendar</title>
+    <title>Tile Layout with Glass Background</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
+        @property --angle-1 {
+          syntax: "<angle>";
+          inherits: false;
+          initial-value: -75deg;
+        }
+
+        @property --angle-2 {
+          syntax: "<angle>";
+          inherits: false;
+          initial-value: -45deg;
+        }
+
+        :root {
+          --global--size: clamp(2rem, 4vw, 5rem);
+          --anim--hover-time: 400ms;
+          --anim--hover-ease: cubic-bezier(0.25, 1, 0.5, 1);
+          --border-width: clamp(1px, 0.0625em, 4px);
+        }
+
         .tile-3d {
             border-radius: 35px 35px 50px 50px / 35px 35px 60px 60px;
-            box-shadow: 
-                0 6px 12px rgba(0,0,0,0.15),
-                0 15px 30px rgba(0,0,0,0.15),
-                inset 0 2px 0 rgba(255,255,255,0.7),
-                inset 0 -8px 16px rgba(0,0,0,0.2);
             position: relative;
-            background: 
-                linear-gradient(135deg, rgba(255,255,255,0.85) 0%, rgba(255,255,255,0.75) 100%);
-            backdrop-filter: blur(10px);
-            background-image:
-                url("assets/glass_background.jpg")
-        }
-        
-        .tile-3d::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            border-radius: inherit;
+            transition: all var(--anim--hover-time) var(--anim--hover-ease);
+            
+            /* Glass Background Styles */
+            background: linear-gradient(
+                -75deg,
+                rgba(255, 255, 255, 0.05),
+                rgba(255, 255, 255, 0.2),
+                rgba(255, 255, 255, 0.05)
+            );
             box-shadow: 
-                inset 0 12px 24px rgba(255,255,255,0.6),
-                inset 0 -8px 16px rgba(0,0,0,0.15);
-            pointer-events: none;
+                inset 0 0.125em 0.125em rgba(0, 0, 0, 0.05),
+                inset 0 -0.125em 0.125em rgba(255, 255, 255, 0.5),
+                0 0.25em 0.125em -0.125em rgba(0, 0, 0, 0.2),
+                0 0 0.1em 0.25em inset rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(clamp(1px, 0.125em, 4px));
+            -webkit-backdrop-filter: blur(clamp(1px, 0.125em, 4px));
+            -moz-backdrop-filter: blur(clamp(1px, 0.125em, 4px));
+            -ms-backdrop-filter: blur(clamp(1px, 0.125em, 4px));
         }
         
         .tile-3d:hover {
-            transform: translateY(-3px);
+            transform: translateY(-3px) scale(0.975);
+            backdrop-filter: blur(0.01em);
+            -webkit-backdrop-filter: blur(0.01em);
+            -moz-backdrop-filter: blur(0.01em);
+            -ms-backdrop-filter: blur(0.01em);
             box-shadow: 
-                0 10px 20px rgba(0,0,0,0.2),
-                0 20px 40px rgba(0,0,0,0.2),
-                inset 0 2px 0 rgba(255,255,255,0.7),
-                inset 0 -8px 16px rgba(0,0,0,0.2);
+                inset 0 0.125em 0.125em rgba(0, 0, 0, 0.05),
+                inset 0 -0.125em 0.125em rgba(255, 255, 255, 0.5),
+                0 0.15em 0.05em -0.1em rgba(0, 0, 0, 0.25),
+                0 0 0.05em 0.1em inset rgba(255, 255, 255, 0.5);
         }
         
         .large-tile-3d {
             border-radius: 40px 40px 60px 60px / 40px 40px 70px 70px;
-            box-shadow: 
-                0 8px 16px rgba(0,0,0,0.2),
-                0 20px 40px rgba(0,0,0,0.2),
-                inset 0 2px 0 rgba(255,255,255,0.7),
-                inset 0 -10px 20px rgba(0,0,0,0.2);
             position: relative;
-            background: 
-                linear-gradient(135deg, rgba(59, 130, 246, 0.85) 0%, rgba(147, 51, 234, 0.85) 100%);
-            backdrop-filter: blur(15px);
-            min-height: 450px; /* 3x taller */
-        }
-        
-        .large-tile-3d::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            border-radius: inherit;
+            min-height: 450px;
+            transition: all var(--anim--hover-time) var(--anim--hover-ease);
+            
+            /* Glass Background Styles */
+            background: linear-gradient(
+                -75deg,
+                rgba(255, 255, 255, 0.05),
+                rgba(255, 255, 255, 0.2),
+                rgba(255, 255, 255, 0.05)
+            );
             box-shadow: 
-                inset 0 15px 30px rgba(255,255,255,0.5),
-                inset 0 -10px 20px rgba(0,0,0,0.2);
-            pointer-events: none;
+                inset 0 0.125em 0.125em rgba(0, 0, 0, 0.05),
+                inset 0 -0.125em 0.125em rgba(255, 255, 255, 0.5),
+                0 0.25em 0.125em -0.125em rgba(0, 0, 0, 0.2),
+                0 0 0.1em 0.25em inset rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(clamp(1px, 0.125em, 4px));
+            -webkit-backdrop-filter: blur(clamp(1px, 0.125em, 4px));
+            -moz-backdrop-filter: blur(clamp(1px, 0.125em, 4px));
+            -ms-backdrop-filter: blur(clamp(1px, 0.125em, 4px));
         }
         
         .large-tile-3d:hover {
-            transform: translateY(-3px);
+            transform: translateY(-3px) scale(0.975);
+            backdrop-filter: blur(0.01em);
+            -webkit-backdrop-filter: blur(0.01em);
+            -moz-backdrop-filter: blur(0.01em);
+            -ms-backdrop-filter: blur(0.01em);
             box-shadow: 
-                0 12px 24px rgba(0,0,0,0.25),
-                0 25px 50px rgba(0,0,0,0.25),
-                inset 0 2px 0 rgba(255,255,255,0.7),
-                inset 0 -10px 20px rgba(0,0,0,0.2);
-        }
-        
-        .transition-all {
-            transition: all 0.3s ease;
+                inset 0 0.125em 0.125em rgba(0, 0, 0, 0.05),
+                inset 0 -0.125em 0.125em rgba(255, 255, 255, 0.5),
+                0 0.15em 0.05em -0.1em rgba(0, 0, 0, 0.25),
+                0 0 0.05em 0.1em inset rgba(255, 255, 255, 0.5);
         }
         
         .calendar-day {
@@ -137,7 +150,7 @@
     <div class="max-w-6xl mx-auto">
         <!-- Profile Section -->
         <div class="flex justify-between items-center mb-8">
-            <h1 class="text-3xl font-bold text-gray-800">Tile Layout with Calendar</h1>
+            <h1 class="text-3xl font-bold text-gray-800">Tile Layout with Glass Background</h1>
             <div class="flex items-center space-x-3">
                 <span class="text-gray-700 font-medium">John Doe</span>
                 <div class="w-12 h-12 bg-gradient-to-r from-blue-400 to-purple-500 rounded-full flex items-center justify-center text-white font-bold shadow-md">
@@ -149,7 +162,7 @@
         <!-- Grid container -->
         <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
             <!-- First row of tiles -->
-            <div class="tile-3d p-6 flex flex-col items-center justify-center transition-all">
+            <div class="tile-3d p-6 flex flex-col items-center justify-center">
                 <div class="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mb-4">
                     <span class="text-blue-600 text-2xl">1</span>
                 </div>
@@ -157,7 +170,7 @@
                 <p class="text-gray-500 text-center">First tile content</p>
             </div>
             
-            <div class="tile-3d p-6 flex flex-col items-center justify-center transition-all">
+            <div class="tile-3d p-6 flex flex-col items-center justify-center">
                 <div class="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mb-4">
                     <span class="text-green-600 text-2xl">2</span>
                 </div>
@@ -165,7 +178,7 @@
                 <p class="text-gray-500 text-center">Second tile content</p>
             </div>
             
-            <div class="tile-3d p-6 flex flex-col items-center justify-center transition-all">
+            <div class="tile-3d p-6 flex flex-col items-center justify-center">
                 <div class="w-16 h-16 bg-purple-100 rounded-full flex items-center justify-center mb-4">
                     <span class="text-purple-600 text-2xl">3</span>
                 </div>
@@ -174,7 +187,7 @@
             </div>
             
             <!-- Second row of tiles -->
-            <div class="tile-3d p-6 flex flex-col items-center justify-center transition-all">
+            <div class="tile-3d p-6 flex flex-col items-center justify-center">
                 <div class="w-16 h-16 bg-red-100 rounded-full flex items-center justify-center mb-4">
                     <span class="text-red-600 text-2xl">4</span>
                 </div>
@@ -182,7 +195,7 @@
                 <p class="text-gray-500 text-center">Fourth tile content</p>
             </div>
             
-            <div class="tile-3d p-6 flex flex-col items-center justify-center transition-all">
+            <div class="tile-3d p-6 flex flex-col items-center justify-center">
                 <div class="w-16 h-16 bg-yellow-100 rounded-full flex items-center justify-center mb-4">
                     <span class="text-yellow-600 text-2xl">5</span>
                 </div>
@@ -190,7 +203,7 @@
                 <p class="text-gray-500 text-center">Fifth tile content</p>
             </div>
             
-            <div class="tile-3d p-6 flex flex-col items-center justify-center transition-all">
+            <div class="tile-3d p-6 flex flex-col items-center justify-center">
                 <div class="w-16 h-16 bg-indigo-100 rounded-full flex items-center justify-center mb-4">
                     <span class="text-indigo-600 text-2xl">6</span>
                 </div>
@@ -199,7 +212,7 @@
             </div>
             
             <!-- Large tile as calendar -->
-            <div class="md:col-span-3 large-tile-3d p-8 text-white transition-all">
+            <div class="md:col-span-3 large-tile-3d p-8 text-white">
                 <div class="h-full flex flex-col">
                     <div class="flex justify-between items-center mb-6">
                         <h2 class="text-3xl font-bold">October 2025</h2>
