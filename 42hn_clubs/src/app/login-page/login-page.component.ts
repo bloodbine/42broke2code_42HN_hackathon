@@ -10,7 +10,6 @@ export class LoginPageComponent {
   constructor(private router: Router) {}
 
   navigateToDashboard() {
-    console.log('Button clicked!'); 
     this.router.navigate(['/dashboard']);
   }
 }
