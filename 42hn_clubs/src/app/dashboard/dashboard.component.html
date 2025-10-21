@@ -35,8 +35,6 @@
             position: relative;
             transition: all var(--anim--hover-time) var(--anim--hover-ease);
             overflow: hidden;
-            
-            /* Background texture layer */
             background: url("assets/glass_background.jpg") center/cover;
             opacity: 0.9;
         }
@@ -46,8 +44,6 @@
             position: relative;
             transition: all var(--anim--hover-time) var(--anim--hover-ease);
             overflow: hidden;
-            
-            /* Background texture layer */
             background: url("assets/run.jpg") center/cover;
             opacity: 0.9;
         }
@@ -57,8 +53,6 @@
             position: relative;
             transition: all var(--anim--hover-time) var(--anim--hover-ease);
             overflow: hidden;
-            
-            /* Background texture layer */
             background: url("assets/wall.jpg") center/cover;
             opacity: 0.9;
         }
@@ -68,8 +62,6 @@
             position: relative;
             transition: all var(--anim--hover-time) var(--anim--hover-ease);
             overflow: hidden;
-            
-            /* Background texture layer */
             background: url("assets/gd.jpg") center/cover;
             opacity: 0.9;
         }
@@ -79,8 +71,6 @@
             position: relative;
             transition: all var(--anim--hover-time) var(--anim--hover-ease);
             overflow: hidden;
-            
-            /* Background texture layer */
             background: url("assets/garden.jpg") center/cover;
             opacity: 0.9;
         }
@@ -90,8 +80,6 @@
             position: relative;
             transition: all var(--anim--hover-time) var(--anim--hover-ease);
             overflow: hidden;
-            
-            /* Background texture layer */
             background: url("assets/hack.jpeg") center/cover;
             opacity: 0.9;
         }
@@ -101,13 +89,10 @@
             position: relative;
             transition: all var(--anim--hover-time) var(--anim--hover-ease);
             overflow: hidden;
-            
-            /* Background texture layer */
             background: url("assets/entrep.jpg") center/cover;
             opacity: 0.9;
         }
         
-        /* Glass effect overlay */
         .tile-3d::before {
             content: '';
             position: absolute;
@@ -116,8 +101,6 @@
             right: 0;
             bottom: 0;
             border-radius: inherit;
-            
-            /* Glass Background Styles */
             background: linear-gradient(
                 -75deg,
                 rgba(255, 255, 255, 0.05),
@@ -140,8 +123,6 @@
             right: 0;
             bottom: 0;
             border-radius: inherit;
-            
-            /* Glass Background Styles */
             background: linear-gradient(
                 -75deg,
                 rgba(255, 255, 255, 0.05),
@@ -164,8 +145,6 @@
             right: 0;
             bottom: 0;
             border-radius: inherit;
-            
-            /* Glass Background Styles */
             background: linear-gradient(
                 -75deg,
                 rgba(255, 255, 255, 0.05),
@@ -188,8 +167,6 @@
             right: 0;
             bottom: 0;
             border-radius: inherit;
-            
-            /* Glass Background Styles */
             background: linear-gradient(
                 -75deg,
                 rgba(255, 255, 255, 0.05),
@@ -212,8 +189,6 @@
             right: 0;
             bottom: 0;
             border-radius: inherit;
-            
-            /* Glass Background Styles */
             background: linear-gradient(
                 -75deg,
                 rgba(255, 255, 255, 0.05),
@@ -236,8 +211,6 @@
             right: 0;
             bottom: 0;
             border-radius: inherit;
-            
-            /* Glass Background Styles */
             background: linear-gradient(
                 -75deg,
                 rgba(255, 255, 255, 0.05),
@@ -260,8 +233,6 @@
             right: 0;
             bottom: 0;
             border-radius: inherit;
-            
-            /* Glass Background Styles */
             background: linear-gradient(
                 -75deg,
                 rgba(255, 255, 255, 0.05),
@@ -362,8 +333,6 @@
             min-height: 450px;
             transition: all var(--anim--hover-time) var(--anim--hover-ease);
             overflow: hidden;
-            
-            /* Background texture layer */
             background: url("assets/calbg.jpg") center/cover;
         }
 
@@ -396,8 +365,6 @@
         .tile-3d-entrep:hover {
             transform: translateY(-3px) scale(0.975);
         }
-        
-        /* Glass effect overlay */
         .large-tile-3d::before {
             content: '';
             position: absolute;
@@ -406,8 +373,6 @@
             right: 0;
             bottom: 0;
             border-radius: inherit;
-            
-            /* Glass Background Styles */
             background: linear-gradient(
                 -75deg,
                 rgba(255, 255, 255, 0.05),
@@ -435,8 +400,6 @@
         .large-tile-3d:hover {
             transform: translateY(-3px) scale(0.975);
         }
-        
-        /* Ensure content stays above the glass layer */
         .tile-3d > *, .large-tile-3d > * {
             position: relative;
             z-index: 2;
