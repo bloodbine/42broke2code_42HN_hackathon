@@ -1,0 +1,776 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tile Layout with Glass Over Texture</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @property --angle-1 {
+          syntax: "<angle>";
+          inherits: false;
+          initial-value: -75deg;
+        }
+
+        @property --angle-2 {
+          syntax: "<angle>";
+          inherits: false;
+          initial-value: -45deg;
+        }
+
+        :root {
+          --global--size: clamp(2rem, 4vw, 5rem);
+          --anim--hover-time: 400ms;
+          --anim--hover-ease: cubic-bezier(0.25, 1, 0.5, 1);
+          --border-width: clamp(1px, 0.0625em, 4px);
+        }
+
+        body {
+          background: url("assets/hb.jpg") no-repeat center center fixed;
+          background-size: cover;
+        }
+
+        .tile-3d {
+            border-radius: 35px 35px 50px 50px / 35px 35px 60px 60px;
+            position: relative;
+            transition: all var(--anim--hover-time) var(--anim--hover-ease);
+            overflow: hidden;
+            
+            /* Background texture layer */
+            background: url("assets/glass_background.jpg") center/cover;
+            opacity: 0.9;
+        }
+
+        .tile-3d-run {
+            border-radius: 35px 35px 50px 50px / 35px 35px 60px 60px;
+            position: relative;
+            transition: all var(--anim--hover-time) var(--anim--hover-ease);
+            overflow: hidden;
+            
+            /* Background texture layer */
+            background: url("assets/run.jpg") center/cover;
+            opacity: 0.9;
+        }
+
+        .tile-3d-wall {
+            border-radius: 35px 35px 50px 50px / 35px 35px 60px 60px;
+            position: relative;
+            transition: all var(--anim--hover-time) var(--anim--hover-ease);
+            overflow: hidden;
+            
+            /* Background texture layer */
+            background: url("assets/wall.jpg") center/cover;
+            opacity: 0.9;
+        }
+
+        .tile-3d-gamedev {
+            border-radius: 35px 35px 50px 50px / 35px 35px 60px 60px;
+            position: relative;
+            transition: all var(--anim--hover-time) var(--anim--hover-ease);
+            overflow: hidden;
+            
+            /* Background texture layer */
+            background: url("assets/gd.jpg") center/cover;
+            opacity: 0.9;
+        }
+
+        .tile-3d-garden {
+            border-radius: 35px 35px 50px 50px / 35px 35px 60px 60px;
+            position: relative;
+            transition: all var(--anim--hover-time) var(--anim--hover-ease);
+            overflow: hidden;
+            
+            /* Background texture layer */
+            background: url("assets/garden.jpg") center/cover;
+            opacity: 0.9;
+        }
+
+        .tile-3d-hack {
+            border-radius: 35px 35px 50px 50px / 35px 35px 60px 60px;
+            position: relative;
+            transition: all var(--anim--hover-time) var(--anim--hover-ease);
+            overflow: hidden;
+            
+            /* Background texture layer */
+            background: url("assets/hack.jpeg") center/cover;
+            opacity: 0.9;
+        }
+
+        .tile-3d-entrep {
+            border-radius: 35px 35px 50px 50px / 35px 35px 60px 60px;
+            position: relative;
+            transition: all var(--anim--hover-time) var(--anim--hover-ease);
+            overflow: hidden;
+            
+            /* Background texture layer */
+            background: url("assets/entrep.jpg") center/cover;
+            opacity: 0.9;
+        }
+        
+        /* Glass effect overlay */
+        .tile-3d::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            border-radius: inherit;
+            
+            /* Glass Background Styles */
+            background: linear-gradient(
+                -75deg,
+                rgba(255, 255, 255, 0.05),
+                rgba(255, 255, 255, 0.2),
+                rgba(255, 255, 255, 0.05)
+            );
+            box-shadow: 
+                inset 0 0.125em 0.125em rgba(0, 0, 0, 0.05),
+                inset 0 -0.125em 0.125em rgba(255, 255, 255, 0.5),
+                0 0.25em 0.125em -0.125em rgba(0, 0, 0, 0.2),
+                0 0 0.1em 0.25em inset rgba(255, 255, 255, 0.2);
+            z-index: 1;
+        }
+
+        .tile-3d-run::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            border-radius: inherit;
+            
+            /* Glass Background Styles */
+            background: linear-gradient(
+                -75deg,
+                rgba(255, 255, 255, 0.05),
+                rgba(255, 255, 255, 0.2),
+                rgba(255, 255, 255, 0.05)
+            );
+            box-shadow: 
+                inset 0 0.125em 0.125em rgba(0, 0, 0, 0.05),
+                inset 0 -0.125em 0.125em rgba(255, 255, 255, 0.5),
+                0 0.25em 0.125em -0.125em rgba(0, 0, 0, 0.2),
+                0 0 0.1em 0.25em inset rgba(255, 255, 255, 0.2);
+            z-index: 1;
+        }
+
+        .tile-3d-wall::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            border-radius: inherit;
+            
+            /* Glass Background Styles */
+            background: linear-gradient(
+                -75deg,
+                rgba(255, 255, 255, 0.05),
+                rgba(255, 255, 255, 0.2),
+                rgba(255, 255, 255, 0.05)
+            );
+            box-shadow: 
+                inset 0 0.125em 0.125em rgba(0, 0, 0, 0.05),
+                inset 0 -0.125em 0.125em rgba(255, 255, 255, 0.5),
+                0 0.25em 0.125em -0.125em rgba(0, 0, 0, 0.2),
+                0 0 0.1em 0.25em inset rgba(255, 255, 255, 0.2);
+            z-index: 1;
+        }
+
+        .tile-3d-gamedev::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            border-radius: inherit;
+            
+            /* Glass Background Styles */
+            background: linear-gradient(
+                -75deg,
+                rgba(255, 255, 255, 0.05),
+                rgba(255, 255, 255, 0.2),
+                rgba(255, 255, 255, 0.05)
+            );
+            box-shadow: 
+                inset 0 0.125em 0.125em rgba(0, 0, 0, 0.05),
+                inset 0 -0.125em 0.125em rgba(255, 255, 255, 0.5),
+                0 0.25em 0.125em -0.125em rgba(0, 0, 0, 0.2),
+                0 0 0.1em 0.25em inset rgba(255, 255, 255, 0.2);
+            z-index: 1;
+        }
+
+        .tile-3d-garden::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            border-radius: inherit;
+            
+            /* Glass Background Styles */
+            background: linear-gradient(
+                -75deg,
+                rgba(255, 255, 255, 0.05),
+                rgba(255, 255, 255, 0.2),
+                rgba(255, 255, 255, 0.05)
+            );
+            box-shadow: 
+                inset 0 0.125em 0.125em rgba(0, 0, 0, 0.05),
+                inset 0 -0.125em 0.125em rgba(255, 255, 255, 0.5),
+                0 0.25em 0.125em -0.125em rgba(0, 0, 0, 0.2),
+                0 0 0.1em 0.25em inset rgba(255, 255, 255, 0.2);
+            z-index: 1;
+        }
+
+        .tile-3d-hack::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            border-radius: inherit;
+            
+            /* Glass Background Styles */
+            background: linear-gradient(
+                -75deg,
+                rgba(255, 255, 255, 0.05),
+                rgba(255, 255, 255, 0.2),
+                rgba(255, 255, 255, 0.05)
+            );
+            box-shadow: 
+                inset 0 0.125em 0.125em rgba(0, 0, 0, 0.05),
+                inset 0 -0.125em 0.125em rgba(255, 255, 255, 0.5),
+                0 0.25em 0.125em -0.125em rgba(0, 0, 0, 0.2),
+                0 0 0.1em 0.25em inset rgba(255, 255, 255, 0.2);
+            z-index: 1;
+        }
+
+        .tile-3d-entrep::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            border-radius: inherit;
+            
+            /* Glass Background Styles */
+            background: linear-gradient(
+                -75deg,
+                rgba(255, 255, 255, 0.05),
+                rgba(255, 255, 255, 0.2),
+                rgba(255, 255, 255, 0.05)
+            );
+            box-shadow: 
+                inset 0 0.125em 0.125em rgba(0, 0, 0, 0.05),
+                inset 0 -0.125em 0.125em rgba(255, 255, 255, 0.5),
+                0 0.25em 0.125em -0.125em rgba(0, 0, 0, 0.2),
+                0 0 0.1em 0.25em inset rgba(255, 255, 255, 0.2);
+            z-index: 1;
+        }
+        
+        .tile-3d:hover::before {
+            backdrop-filter: blur(0.01em);
+            -webkit-backdrop-filter: blur(0.01em);
+            -moz-backdrop-filter: blur(0.01em);
+            -ms-backdrop-filter: blur(0.01em);
+            box-shadow: 
+                inset 0 0.125em 0.125em rgba(0, 0, 0, 0.05),
+                inset 0 -0.125em 0.125em rgba(255, 255, 255, 0.5),
+                0 0.15em 0.05em -0.1em rgba(0, 0, 0, 0.25),
+                0 0 0.05em 0.1em inset rgba(255, 255, 255, 0.5);
+        }
+
+        .tile-3d:hover {
+            transform: translateY(-3px) scale(0.975);
+        }
+
+        .tile-3d-run:hover::before {
+            backdrop-filter: blur(0.01em);
+            -webkit-backdrop-filter: blur(0.01em);
+            -moz-backdrop-filter: blur(0.01em);
+            -ms-backdrop-filter: blur(0.01em);
+            box-shadow: 
+                inset 0 0.125em 0.125em rgba(0, 0, 0, 0.05),
+                inset 0 -0.125em 0.125em rgba(255, 255, 255, 0.5),
+                0 0.15em 0.05em -0.1em rgba(0, 0, 0, 0.25),
+                0 0 0.05em 0.1em inset rgba(255, 255, 255, 0.5);
+        }
+
+        .tile-3d-run:hover {
+            transform: translateY(-3px) scale(0.975);
+        }
+
+        .tile-3d-wall:hover::before {
+            backdrop-filter: blur(0.01em);
+            -webkit-backdrop-filter: blur(0.01em);
+            -moz-backdrop-filter: blur(0.01em);
+            -ms-backdrop-filter: blur(0.01em);
+            box-shadow: 
+                inset 0 0.125em 0.125em rgba(0, 0, 0, 0.05),
+                inset 0 -0.125em 0.125em rgba(255, 255, 255, 0.5),
+                0 0.15em 0.05em -0.1em rgba(0, 0, 0, 0.25),
+                0 0 0.05em 0.1em inset rgba(255, 255, 255, 0.5);
+        }
+
+        .tile-3d-wall:hover {
+            transform: translateY(-3px) scale(0.975);
+        }
+
+        .tile-3d-gamedev:hover::before {
+            backdrop-filter: blur(0.01em);
+            -webkit-backdrop-filter: blur(0.01em);
+            -moz-backdrop-filter: blur(0.01em);
+            -ms-backdrop-filter: blur(0.01em);
+            box-shadow: 
+                inset 0 0.125em 0.125em rgba(0, 0, 0, 0.05),
+                inset 0 -0.125em 0.125em rgba(255, 255, 255, 0.5),
+                0 0.15em 0.05em -0.1em rgba(0, 0, 0, 0.25),
+                0 0 0.05em 0.1em inset rgba(255, 255, 255, 0.5);
+        }
+
+        .tile-3d-gamedev:hover {
+            transform: translateY(-3px) scale(0.975);
+        }
+
+        .tile-3d-garden:hover::before {
+            backdrop-filter: blur(0.01em);
+            -webkit-backdrop-filter: blur(0.01em);
+            -moz-backdrop-filter: blur(0.01em);
+            -ms-backdrop-filter: blur(0.01em);
+            box-shadow: 
+                inset 0 0.125em 0.125em rgba(0, 0, 0, 0.05),
+                inset 0 -0.125em 0.125em rgba(255, 255, 255, 0.5),
+                0 0.15em 0.05em -0.1em rgba(0, 0, 0, 0.25),
+                0 0 0.05em 0.1em inset rgba(255, 255, 255, 0.5);
+        }
+
+        .tile-3d-garden:hover {
+            transform: translateY(-3px) scale(0.975);
+        }
+        
+        .large-tile-3d {
+            border-radius: 40px 40px 60px 60px / 40px 40px 70px 70px;
+            position: relative;
+            min-height: 450px;
+            transition: all var(--anim--hover-time) var(--anim--hover-ease);
+            overflow: hidden;
+            
+            /* Background texture layer */
+            background: url("assets/calbg.jpg") center/cover;
+        }
+
+        .tile-3d-hack:hover::before {
+            backdrop-filter: blur(0.01em);
+            -webkit-backdrop-filter: blur(0.01em);
+            -moz-backdrop-filter: blur(0.01em);
+            -ms-backdrop-filter: blur(0.01em);
+            box-shadow: 
+                inset 0 0.125em 0.125em rgba(0, 0, 0, 0.05),
+                inset 0 -0.125em 0.125em rgba(255, 255, 255, 0.5),
+                0 0.15em 0.05em -0.1em rgba(0, 0, 0, 0.25),
+                0 0 0.05em 0.1em inset rgba(255, 255, 255, 0.5);
+        }
+
+        .tile-3d-hack:hover {
+            transform: translateY(-3px) scale(0.975);
+        }
+
+        .tile-3d-entrep:hover::before {
+            backdrop-filter: blur(0.01em);
+
+            box-shadow: 
+                inset 0 0.125em 0.125em rgba(0, 0, 0, 0.05),
+                inset 0 -0.125em 0.125em rgba(255, 255, 255, 0.5),
+                0 0.15em 0.05em -0.1em rgba(0, 0, 0, 0.25),
+                0 0 0.05em 0.1em inset rgba(255, 255, 255, 0.5);
+        }
+
+        .tile-3d-entrep:hover {
+            transform: translateY(-3px) scale(0.975);
+        }
+        
+        /* Glass effect overlay */
+        .large-tile-3d::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            border-radius: inherit;
+            
+            /* Glass Background Styles */
+            background: linear-gradient(
+                -75deg,
+                rgba(255, 255, 255, 0.05),
+                rgba(255, 255, 255, 0.2),
+                rgba(255, 255, 255, 0.05)
+            );
+            box-shadow: 
+                inset 0 0.125em 0.125em rgba(0, 0, 0, 0.05),
+                inset 0 -0.125em 0.125em rgba(255, 255, 255, 0.5),
+                0 0.25em 0.125em -0.125em rgba(0, 0, 0, 0.2),
+                0 0 0.1em 0.25em inset rgba(255, 255, 255, 0.2);
+            z-index: 1;
+        }
+        
+        .large-tile-3d:hover::before {
+            backdrop-filter: blur(0.01em);
+
+            box-shadow: 
+                inset 0 0.125em 0.125em rgba(0, 0, 0, 0.05),
+                inset 0 -0.125em 0.125em rgba(255, 255, 255, 0.5),
+                0 0.15em 0.05em -0.1em rgba(0, 0, 0, 0.25),
+                0 0 0.05em 0.1em inset rgba(255, 255, 255, 0.5);
+        }
+        
+        .large-tile-3d:hover {
+            transform: translateY(-3px) scale(0.975);
+        }
+        
+        /* Ensure content stays above the glass layer */
+        .tile-3d > *, .large-tile-3d > * {
+            position: relative;
+            z-index: 2;
+        }
+        
+        .calendar-day {
+            transition: all 0.2s ease;
+            min-height: 80px;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .calendar-day:hover {
+            background-color: rgba(255, 255, 255, 0.2);
+        }
+        
+        .calendar-day.today {
+            background-color: rgba(255, 255, 255, 0.3);
+            font-weight: bold;
+        }
+        
+        .event {
+            font-size: 0.7rem;
+            padding: 2px 4px;
+            margin-bottom: 2px;
+            border-radius: 4px;
+            background-color: rgba(255, 255, 255, 0.2);
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+        
+        .event.work {
+            background-color: rgba(34, 197, 94, 0.7);
+            border-left: 2px solid rgb(34, 197, 94);
+        }
+
+        .event.club {
+            background-color: rgba(170, 25, 25, 0.7);
+            border-left: 2px solid rgb(167, 24, 24);
+        }
+        
+        .event.personal {
+            background-color: rgba(249, 115, 22, 0.7);
+            border-left: 2px solid rgb(249, 115, 22);
+        }
+        
+        .event.meeting {
+            background-color: rgba(139, 92, 246, 0.7);
+            border-left: 2px solid rgb(139, 92, 246);
+        }
+        
+        .event.other {
+            background-color: rgba(59, 130, 246, 0.7);
+            border-left: 2px solid rgb(59, 130, 246);
+        }
+    </style>
+</head>
+<body class="min-h-screen p-4">
+    <div class="max-w-6xl mx-auto">
+        <!-- Profile Section -->
+        <div class="flex justify-between items-center mb-8">
+            <h1 >
+    <img src="assets/42.webp" alt="42Heilbronn Clubs & Events" class="w-full h-60 ml-10 ">
+</h1>
+            <div class="flex items-center space-x-3">
+                <span class="text-white font-medium  mb-2 bg-black/80 rounded-lg px-4">gpasztor</span>
+                <div class="w-12 h-12 bg-gradient-to-r from-blue-400 to-purple-500 rounded-full flex items-center justify-center text-white font-bold shadow-md">
+                    GP
+                </div>
+            </div>
+        </div>
+        
+        <!-- Grid container -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <!-- First row of tiles -->
+            <div class="tile-3d-run p-6 flex flex-col items-center justify-center">
+                <div class="w-16 h-16 flex items-center justify-center mb-4">
+                </div>
+                <h3 class="text-xl font-semibold text-white mb-2 bg-black/80 rounded-lg px-4">Running</h3>
+            </div>
+            
+            <div class="tile-3d-wall p-6 flex flex-col items-center justify-center">
+                <div class="w-16 h-16 flex items-center justify-center mb-4">
+                </div>
+                <h3 class="text-xl font-semibold text-white mb-2 bg-black/80 rounded-lg px-4">Bouldering</h3>
+            </div>
+            
+            <div class="tile-3d-gamedev p-6 flex flex-col items-center justify-center">
+                <div class="w-16 h-16  flex items-center justify-center mb-4">
+                </div>
+                <h3 class="text-xl font-semibold text-white mb-2 bg-black/80 rounded-lg px-4">Game Dev</h3>
+            </div>
+            
+            <!-- Second row of tiles -->
+            <div class="tile-3d-garden p-6 flex flex-col items-center justify-center">
+                <div class="w-16 h-16 flex items-center justify-center mb-4">
+                </div>
+                <h3 class="text-xl font-semibold text-white mb-2 bg-black/80 rounded-lg px-4">Gardening</h3>
+            </div>
+            
+            <div class="tile-3d-hack p-6 flex flex-col items-center justify-center">
+                <div class="w-16 h-16 flex items-center justify-center mb-4">
+                </div>
+                <h3 class="text-xl font-semibold text-white mb-2 bg-black/80 rounded-lg px-4">Hacker Dojo</h3>
+            </div>
+            
+            <div class="tile-3d-entrep p-6 flex flex-col items-center justify-center">
+                <div class="w-16 h-16 flex items-center justify-center mb-4">
+                </div>
+                <h3 class="text-xl font-semibold text-white mb-2 bg-black/80 rounded-lg px-4">Entrepreneurship</h3>
+            </div>
+            
+            <!-- Large tile as calendar -->
+            <div class="md:col-span-3 large-tile-3d p-8 text-white">
+                <div class="h-full flex flex-col">
+                    <div class="flex justify-between items-center mb-6">
+                        <h2 class="text-3xl font-bold">October 2025</h2>
+                        <div class="flex space-x-4">
+                            <button class="bg-white/20 hover:bg-white/30 py-2 px-4 rounded-lg transition duration-300">
+                                &larr; Previous
+                            </button>
+                            <button class="bg-white/20 hover:bg-white/30 py-2 px-4 rounded-lg transition duration-300">
+                                Today
+                            </button>
+                            <button class="bg-white/20 hover:bg-white/30 py-2 px-4 rounded-lg transition duration-300">
+                                Next &rarr;
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <div class="grid grid-cols-7 gap-2 flex-grow">
+                        <!-- Calendar headers -->
+                        <div class="text-center font-semibold py-2">Sun</div>
+                        <div class="text-center font-semibold py-2">Mon</div>
+                        <div class="text-center font-semibold py-2">Tue</div>
+                        <div class="text-center font-semibold py-2">Wed</div>
+                        <div class="text-center font-semibold py-2">Thu</div>
+                        <div class="text-center font-semibold py-2">Fri</div>
+                        <div class="text-center font-semibold py-2">Sat</div>
+                        
+                        <!-- Calendar days with events -->
+                        <!-- October 2025 starts on a Wednesday -->
+                        <div class="calendar-day rounded-lg p-1 opacity-50">
+                            <div class="text-right pr-1">28</div>
+                        </div>
+                        <div class="calendar-day rounded-lg p-1 opacity-50">
+                            <div class="text-right pr-1">29</div>
+                        </div>
+                        <div class="calendar-day rounded-lg p-1 opacity-50">
+                            <div class="text-right pr-1">30</div>
+                        </div>
+                        <div class="calendar-day rounded-lg p-1">
+                            <div class="text-right pr-1">1
+                                <div class="event club">Entrepreneurship 18:00</div>
+                                </div>
+                            <div class="events mt-1 space-y-1">
+                            </div>
+                        </div>
+                        <div class="calendar-day rounded-lg p-1">
+                            <div class="text-right pr-1">2
+                                <div class="event work">EXAM 13:00</div>
+                                <div class="event personal">MEET_UP 17:30</div>
+                                </div>
+                        </div>
+                        <div class="calendar-day rounded-lg p-1">
+                            <div class="text-right pr-1">3
+                                <div class="event club">Gradening 15:00</div>
+                                </div>
+                            <div class="events mt-1 space-y-1">
+                            </div>
+                        </div>
+                        <div class="calendar-day rounded-lg p-1">
+                            <div class="text-right pr-1">4</div>
+                        </div>
+                        
+                        <div class="calendar-day rounded-lg p-1">
+                            <div class="text-right pr-1">5</div>
+                            <div class="events mt-1 space-y-1">
+                            </div>
+                        </div>
+                        <div class="calendar-day rounded-lg p-1">
+                            <div class="text-right pr-1">6
+                                <div class="event personal">Conference 13:00</div>
+                                </div>
+                        </div>
+                        <div class="calendar-day rounded-lg p-1">
+                            <div class="text-right pr-1">7
+                                <div class="event club">Run Club 17:00</div>
+                                </div>
+                            <div class="events mt-1 space-y-1">
+                            </div>
+                        </div>
+                        <div class="calendar-day rounded-lg p-1">
+                            <div class="text-right pr-1">8</div>
+                        </div>
+                        <div class="calendar-day rounded-lg p-1">
+                            <div class="text-right pr-1">9</div>
+                            <div class="events mt-1 space-y-1">
+                                <div class="event work">EXAM 13:00</div>
+                                <div class="event personal">MEET_UP 17:30</div>
+                            </div>
+                        </div>
+                        <div class="calendar-day rounded-lg p-1">
+                            <div class="text-right pr-1">10</div>
+                        </div>
+                        <div class="calendar-day rounded-lg p-1">
+                            <div class="text-right pr-1">11</div>
+                        </div>
+                        
+                        <div class="calendar-day rounded-lg p-1">
+                            <div class="text-right pr-1">12</div>
+                            <div class="events mt-1 space-y-1">
+                            </div>
+                        </div>
+                        <div class="calendar-day rounded-lg p-1">
+                            <div class="text-right pr-1">13</div>
+                        </div>
+                        <div class="calendar-day rounded-lg p-1">
+                            <div class="text-right pr-1">14
+                                <div class="event meeting">Workshop 15:00</div>
+                                </div>
+                        </div>
+                        <div class="calendar-day rounded-lg p-1">
+                            <div class="text-right pr-1">15</div>
+                            <div class="events mt-1 space-y-1">
+                            </div>
+                        </div>
+                        <div class="calendar-day rounded-lg p-1">
+                            <div class="text-right pr-1">16
+                                <div class="event work">EXAM 13:00</div>
+                                <div class="event personal">MEET_UP 17:30</div>
+                                </div>
+                        </div>
+                        <div class="calendar-day rounded-lg p-1">
+                            <div class="text-right pr-1">17
+                                <div class="event club">Game Dev 10:00</div>
+                                </div>
+                            <div class="events mt-1 space-y-1">
+                            </div>
+                        </div>
+                        <div class="calendar-day rounded-lg p-1">
+                            <div class="text-right pr-1">18</div>
+                        </div>
+                        
+                        <div class="calendar-day rounded-lg p-1">
+                            <div class="text-right pr-1">19</div>
+                        </div>
+                        <div class="calendar-day rounded-lg p-1">
+                            <div class="text-right pr-1">20</div>
+                            <div class="events mt-1 space-y-1">
+                                <div class="event club">42HACKATHON 13:00</div>
+                            </div>
+                        </div>
+                        <div class="calendar-day today rounded-lg p-1">
+                            <div class="text-right pr-1 font-bold">21</div>
+                            <div class="events mt-1 space-y-1">
+                            </div>
+                        </div>
+                        <div class="calendar-day rounded-lg p-1">
+                            <div class="text-right pr-1">22
+                                <div class="event work">Pedago Townhall 11:00</div>
+                                </div>
+                                </div>
+                                <div class="calendar-day rounded-lg p-1">
+                                    <div class="text-right pr-1">23
+                                        <div class="event work">EXAM 13:00</div>
+                                        <div class="event meeting">Workshop 15:00</div>
+                                        <div class="event personal">MEET_UP 17:30</div>
+                                    </div>
+                            <div class="events mt-1 space-y-1">
+                            </div>
+                        </div>
+                        <div class="calendar-day rounded-lg p-1">
+                            <div class="text-right pr-1">24</div>
+                        </div>
+                        <div class="calendar-day rounded-lg p-1">
+                            <div class="text-right pr-1">25
+                                <div class="event club">Bouldering 10:00</div>
+                                </div>
+                            <div class="events mt-1 space-y-1">
+                            </div>
+                        </div>
+                        
+                        <div class="calendar-day rounded-lg p-1">
+                            <div class="text-right pr-1">26</div>
+                        </div>
+                        <div class="calendar-day rounded-lg p-1">
+                            <div class="text-right pr-1">27
+                                <div class="event personal">Internship Pre.. 17:00</div>
+                                </div>
+                        </div>
+                        <div class="calendar-day rounded-lg p-1">
+                            <div class="text-right pr-1">28</div>
+                            <div class="events mt-1 space-y-1">
+                            </div>
+                        </div>
+                        <div class="calendar-day rounded-lg p-1">
+                            <div class="text-right pr-1">29
+                                <div class="event club">HACKATHON 09:00</div>
+                                </div>
+                        </div>
+                        <div class="calendar-day rounded-lg p-1">
+                            <div class="text-right pr-1">30</div>
+                            <div class="events mt-1 space-y-1">
+                                <div class="event other">Partnership 08:30</div>
+                                <div class="event work">EXAM 13:00</div>
+                                <div class="event personal">MEET_UP 17:30</div>
+                            </div>
+                        </div>
+                        <div class="calendar-day rounded-lg p-1">
+                            <div class="text-right pr-1">31</div>
+                            <div class="events mt-1 space-y-1">
+                            </div>
+                        </div>
+                        <div class="calendar-day rounded-lg p-1 opacity-50">
+                            <div class="text-right pr-1">1</div>
+                        </div>
+                        <div class="calendar-day rounded-lg p-1 opacity-50">
+                            <div class="text-right pr-1">2</div>
+                        </div>
+                        <div class="calendar-day rounded-lg p-1 opacity-50">
+                            <div class="text-right pr-1">3</div>
+                        </div>
+                        <div class="calendar-day rounded-lg p-1 opacity-50">
+                            <div class="text-right pr-1">4</div>
+                        </div>
+                        <div class="calendar-day rounded-lg p-1 opacity-50">
+                            <div class="text-right pr-1">5</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
